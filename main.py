@@ -95,6 +95,16 @@ if model is None:
         callbacks=[checkpoint, early_stopping]
     )
 
+    # Data Augmentation для улучшения качества изображений
+    datagen = ImageDataGenerator(
+        rotation_range=15,  # Рандомное вращение изображений
+        width_shift_range=0.1,  # Горизонтальный сдвиг
+        height_shift_range=0.1,  # Вертикальный сдвиг
+        horizontal_flip=True,  # Отражение по горизонтали
+        zoom_range=0.1  # Масштабирование
+    )
+    datagen.fit(train_images)
+
     # Функция для классификации изображения
 def classify_image(image):
     if image.shape != (32, 32, 3):
@@ -104,3 +114,18 @@ def classify_image(image):
     predicted_class = tf.argmax(predictions[0]).numpy()
     return class_names.get(predicted_class, "Unknown")
 
+# Функция для визуализации нескольких изображений с их предсказаниями
+def show_images_with_predictions(images, true_labels, n=10):
+    fig, axes = plt.subplots(2, n // 2, figsize=(15, 6))
+    axes = axes.flatten()
+    for i in range(n):
+        predicted_label = classify_image(images[i])
+        true_label = class_names.get(true_labels[i][0], "Unknown")
+        axes[i].imshow(images[i])
+        axes[i].set_title(f"Pred: {predicted_label}\nTrue: {true_label}", fontsize=10)
+        axes[i].axis("off")
+    plt.tight_layout()
+    plt.show()
+
+# Пример использования: показываем первые 10 изображений тестового набора
+show_images_with_predictions(test_images[:10], test_labels[:10])
