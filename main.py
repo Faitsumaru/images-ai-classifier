@@ -1,26 +1,21 @@
-# Импортируем необходимые библиотеки
-import numpy as np  # Для работы с числами и массивами
-import matplotlib.pyplot as plt  # Для построения графиков
+import tensorflow as tf
+from tensorflow.keras import datasets, layers, models
+import matplotlib.pyplot as plt
+import os
 
-# Создаем массив значений x от 0 до 2π (6.28)
-x = np.linspace(0, 2 * np.pi, 100)  # 100 точек между 0 и 2π
+# Load and preprocess data
+(train_images, train_labels), (test_images, test_labels) = datasets.cifar10.load_data()
+train_images, test_images = train_images / 255.0, test_images / 255.0
 
-# Вычисляем значения функции y = sin(x)
-y = np.sin(x)
-
-# Создаем график
-plt.plot(x, y, label='sin(x)', color='purple')  # Строим линию графика
-
-# Добавляем заголовок и подписи к осям
-plt.title('График функции y = sin(x)')  # Заголовок графика
-plt.xlabel('x')  # Подпись оси X
-plt.ylabel('y')  # Подпись оси Y
-
-# Добавляем сетку для удобства восприятия
-plt.grid(True)
-
-# Добавляем легенду
-plt.legend()
-
-# Отображаем график
-plt.show()
+class_names = {
+    0: "airplane",
+    1: "automobile",
+    2: "bird",
+    3: "cat",
+    4: "deer",
+    5: "dog",
+    6: "frog",
+    7: "horse",
+    8: "ship",
+    9: "truck",
+}
