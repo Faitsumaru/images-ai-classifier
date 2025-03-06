@@ -29,3 +29,52 @@ cifar100_class_names = [
     'tulip', 'turtle', 'wardrobe', 'whale', 'willow_tree', 'wolf', 'woman',
     'worm'
 ]
+
+# Создаем словарь для быстрого доступа к названиям классов
+class_names = {i: name for i, name in enumerate(cifar100_class_names)}
+
+# Путь для сохранения модели
+model_path = "cifar100_cnn_model.h5"
+
+# Проверяем, существует ли уже обученная модель
+if os.path.exists(model_path):
+    try:
+        model = tf.keras.models.load_model(model_path)
+        print("Model loaded from disk.")
+    except Exception as e:
+        print(f"Error loading model: {e}. Training a new model...")
+        model = None
+else:
+    model = None
+
+# Если модель не загружена, создаем новую
+if model is None:
+    # Определение архитектуры модели
+    model = models.Sequential(
+        [
+            layers.Conv2D(64, (3, 3), activation="relu", input_shape=(32, 32, 3)),
+            layers.BatchNormalization(),  # Добавляем Batch Normalization для стабилизации обучения
+            layers.MaxPooling2D((2, 2)),
+            layers.Dropout(0.25),
+
+            layers.Conv2D(128, (3, 3), activation="relu"),
+            layers.BatchNormalization(),
+            layers.MaxPooling2D((2, 2)),
+            layers.Dropout(0.25),
+
+            layers.Conv2D(256, (3, 3), activation="relu"),
+            layers.BatchNormalization(),
+            layers.Flatten(),
+
+            layers.Dense(512, activation="relu"),
+            layers.Dropout(0.5),
+            layers.Dense(100)  # Выходной слой для 100 классов
+        ]
+    )
+
+    # Компиляция модели
+    model.compile(
+        optimizer="adam",
+        loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+        metrics=["accuracy"],
+    )
