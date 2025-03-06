@@ -78,3 +78,29 @@ if model is None:
         loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
         metrics=["accuracy"],
     )
+
+    # Коллбэки для мониторинга и сохранения модели
+    checkpoint = tf.keras.callbacks.ModelCheckpoint(
+        model_path, save_best_only=True, monitor="val_accuracy", verbose=1
+    )
+    early_stopping = tf.keras.callbacks.EarlyStopping(
+        monitor="val_loss", patience=10, restore_best_weights=True
+    )
+
+    # Обучение модели
+    history = model.fit(
+        datagen.flow(train_images, train_labels, batch_size=64),
+        epochs=50,
+        validation_data=(test_images, test_labels),
+        callbacks=[checkpoint, early_stopping]
+    )
+
+    # Функция для классификации изображения
+def classify_image(image):
+    if image.shape != (32, 32, 3):
+        raise ValueError("Input image must have shape (32, 32, 3).")
+    img_array = tf.expand_dims(image, 0)  # Создание пакета размером 1
+    predictions = model.predict(img_array)
+    predicted_class = tf.argmax(predictions[0]).numpy()
+    return class_names.get(predicted_class, "Unknown")
+
