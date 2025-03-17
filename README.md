@@ -54,3 +54,11 @@ python main.py
 3. Visualize Results:
 * After training, the script will display predictions for a sample of test images, showing both predicted and true labels.
 
+
+## Preshow
+
+<div align="center">
+    <img src="images/preshow-gen.png" alt="preshow-img">
+</div>
+
+
