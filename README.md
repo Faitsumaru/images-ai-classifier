@@ -62,3 +62,17 @@ python main.py
 </div>
 
 
+## Documentation
+
+* CIFAR-100 dataset: https://www.cs.toronto.edu/~kriz/cifar.html
+* Git: https://githowto.com/ru
+* TensorFlow: https://www.tensorflow.org/api_docs
+* Keras: https://keras.io/api/
+* NumPy: https://numpy.org/doc/
+* Matplotlib: https://matplotlib.org/stable/contents.html
+* Pillow: https://pillow.readthedocs.io/en/stable/
+* Python: https://docs.python.org/3/
+* Early Stopping: https://www.tensorflow.org/api_docs/python/tf/keras/callbacks/EarlyStopping
+* Model Checkpointing: https://www.tensorflow.org/api_docs/python/tf/keras/callbacks/ModelCheckpoint
+* Data Augmentation: https://www.tensorflow.org/tutorials/images/data_augmentation
+* Convolutional Neural Networks: https://en.wikipedia.org/wiki/Convolutional_neural_network
