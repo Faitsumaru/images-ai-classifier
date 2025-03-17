@@ -12,7 +12,7 @@ This project showcases how to preprocess data, build a CNN architecture, apply d
 * Training : Efficient training with early stopping and model checkpointing to save the best-performing model.
 * Prediction : A utility function to classify new images and visualize predictions alongside ground truth labels.
 ​
-> version: Feb 2025, created by Gleb 'Faitsuma' Kiryakov
+> version: Mar 2025, created by Gleb 'Faitsuma' Kiryakov
 
 
 ## Project Structure
