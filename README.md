@@ -34,3 +34,23 @@ This project showcases how to preprocess data, build a CNN architecture, apply d
     * Another function show_images_with_predictions visualizes predictions alongside true labels for a batch of test images.
 
 
+## How to Use
+
+### Prerequisites
+* Install the required dependencies:
+```
+pip install tensorflow matplotlib numpy pillow
+```
+### Running the Code
+1. Clone this repository:
+```
+git clone https://github.com/Faitsumaru/images-ai-classifier
+cd images-ai-classifier
+```
+2. Run the script:
+```
+python main.py
+```
+3. Visualize Results:
+* After training, the script will display predictions for a sample of test images, showing both predicted and true labels.
+
