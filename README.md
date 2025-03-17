@@ -15,3 +15,22 @@ This project showcases how to preprocess data, build a CNN architecture, apply d
 > version: Feb 2025, created by Gleb 'Faitsuma' Kiryakov
 
 
+## Project Structure
+
+### Code Overview
+1. Dataset Loading :
+    * The CIFAR-100 dataset is loaded using TensorFlow's datasets module.
+    * Images are resized to 64x64 pixels using TensorFlow's image processing utilities, and pixel values are normalized to the range [0, 1].
+2. Model Architecture :
+    * A sequential CNN model is defined with multiple convolutional layers, batch normalization, max-pooling, and dropout layers to prevent overfitting.
+    * The final layer outputs logits for the 100 classes in CIFAR-100.
+3. Data Augmentation :
+    * A pipeline of random transformations (e.g., rotation, zoom, flip) is applied to the training data to improve model generalization.
+4. Training :
+    * The model is compiled with the Adam optimizer and sparse categorical cross-entropy loss.
+    * Training is performed with callbacks for early stopping and saving the best model based on validation accuracy.
+5. Prediction and Visualization :
+    * A utility function classify_image predicts the class of a given image.
+    * Another function show_images_with_predictions visualizes predictions alongside true labels for a batch of test images.
+
+
